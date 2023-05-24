@@ -4,7 +4,9 @@ import Navbar from "../components/Navbar";
 const VosPlats = () => {
   return (
     <div className="app">
+        <nav>
       <Navbar />
+      </nav>
       <div className="container">
         <h1>Vos Plats</h1>
         <p>

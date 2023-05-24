@@ -1,11 +1,36 @@
 footer {
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-    padding: 20px;
-  }
-  
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  padding: 20px;
+  border: 2px;
+}
 
-  body {
-    margin-bottom: 80px;
-  }
+body {
+  margin-bottom: 80px;
+  padding-top: 56px;
+}
+nav {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 100;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  margin-bottom: 2%;
+  padding: 0px;
+  gap: 16px;
+
+  width: 708px;
+  height: 190px;
+  left: 323px;
+  top: 115px;
+
+  border: 1px solid #dee2e6;
+
+  border-radius: 4px;
+}

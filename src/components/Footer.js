@@ -6,22 +6,22 @@ const Footer = () => {
   return (
     <ul className="nav justify-content-center">
       <li className="nav-item">
-        <a className="nav-link active border" aria-current="page" href="#">
+        <a className="nav-link active" aria-current="page" href="#">
           Nord
         </a>
       </li>
       <li className="nav-item">
-        <a className="nav-link border" href="#">
+        <a className="nav-link" href="#">
           Est
         </a>
       </li>
       <li className="nav-item">
-        <a className="nav-link border" href="#">
+        <a className="nav-link" href="#">
           Sud
         </a>
       </li>
       <li className="nav-item">
-        <a className="nav-link border" href="#">
+        <a className="nav-link" href="#">
           Ouest
         </a>
       </li>
