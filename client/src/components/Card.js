@@ -7,7 +7,7 @@ const Card = ({ meal }) => {
     <div className="card">
       <h5 className="card-title">{meal.title}</h5>
       <h6 className="card-subtitle mb-2 text-muted">de {meal.user}</h6>
-      <img src={meal.src} alt="" className="img-fluid rounded-circle" />
+      {/* <img src={meal.src} alt="" className="img-fluid rounded-circle" /> */}
       <p className="card-text">
         <ul>
           {meal.ingredients.map((ingredient, index) => (

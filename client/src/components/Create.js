@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router";
+import "bootstrap/dist/css/bootstrap.css";
 
 export default function Create() {
   const [form, setForm] = useState({
     title: "",
     user: "",
-    ingredients: "",
+    ingredients: Array[""],
     sector: "",
   });
   const navigate = useNavigate();
@@ -22,20 +23,20 @@ export default function Create() {
     e.preventDefault();
 
     // When a post request is sent to the create url, we'll add a new record to the database.
-    const newPerson = { ...form };
+    const newDocument = { ...form };
 
     await fetch("http://localhost:5050/record", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(newPerson),
+      body: JSON.stringify(newDocument),
     }).catch((error) => {
       window.alert(error);
       return;
     });
 
-    setForm({ title: "", user: "Nick", ingredients: "", sector: "" });
+    setForm({ title: "", user: "Nick", ingredients: [""], sector: "" });
     navigate("/");
   }
 
@@ -55,7 +56,7 @@ export default function Create() {
           />
         </div>
         <div className="form-group">
-          <label htmlFor="ingredients">Ingrédients accrocheur </label>
+          <label htmlFor="ingredients">Ingrédients accrocheur</label>
           <input
             type="text"
             className="form-control"
