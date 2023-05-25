@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.min.js";
 
 const Navbar = () => {
+  let [searchInput, setSearchInput] = useState("");
   return (
     <nav className="navbar navbar-expand-lg bg-primary" data-bs-theme="blue">
       <div className="container-fluid">
@@ -47,9 +48,9 @@ const Navbar = () => {
           <form className="d-flex" role="search">
             <input
               className="form-control me-2"
-              type="search"
-              placeholder="Recherche"
-              aria-label="Search"
+              type="text"
+              placeholder="Rechercher..."
+              onChange={(e) => setSearchInput(e.target.value)}
             />
             <button type="button" className="btn btn-success">
               Connexion
