@@ -1,5 +1,6 @@
 import React from "react";
 import Navbar from "../components/Navbar";
+import Create from "../components/Create";
 
 const VosPlats = () => {
   return (
@@ -14,6 +15,7 @@ const VosPlats = () => {
           Réunion, sur Manzer.re.
         </p>
       </div>
+      <Create/>
     </div>
   );
 };
