@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 import Navbar from "../components/Navbar";
 import Card from "../components/Card";
 import Footer from "../components/Footer";
@@ -6,15 +7,16 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.min.js";
 
 const Accueil = () => {
-  const meals = [
-    { title: "Carry poulet", user: "user1234", src: "../pp1.png", sector: "Nord", ingredients: ["Poulet", "Tomate", "Créole"] },
-    { title: "Sauté de mines ", user: "user987", src: "../pp2.png", sector: "Nord", ingredients: ["Mines", "Nouilles", "Chinois"] },
-    { title: "Rougail saucisse", user: "user1234", src: "../pp1.png", sector: "Nord", ingredients: ["Saucisse", "Porc", "Créole"] },
-    { title: "Carry poisson", user: "utilisateur12", src: "../pp3.png", sector: "Sud", ingredients: ["Poisson", "Grains", "Créole"] },
-    { title: "Cassoulet", user: "utilisatrice45", src: "../pp4.png", sector: "Ouest", ingredients: ["Grains", "Saucisse", "Français"] },
-    { title: "Carry poulet", user: "utilisatrice45", src: "../pp4.png", sector: "Ouest", ingredients: ["Poulet", "Tomate", "Créole"] },
+  let [meals, setMeals] = useState([]);
 
-  ]
+  const fetchMeals = () => {
+    axios
+      .get("http://localhost:5050/record/")
+      .then((response) => setMeals(response.data)
+      );
+  };
+
+  useEffect(fetchMeals);
 
   return (
     <div className="app">
