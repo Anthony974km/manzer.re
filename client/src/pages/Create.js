@@ -5,7 +5,7 @@ import "bootstrap/dist/css/bootstrap.css";
 export default function Create() {
   const [form, setForm] = useState({
     title: "",
-    user: "", //Le login de la personne connecter
+    user: "Marc", //Le login de la personne connecter
     ingredients: "",
     sector: "",
   });
@@ -36,7 +36,7 @@ export default function Create() {
       return;
     });
 
-    setForm({ title: "", user: "Nick", ingredients: [""], sector: "" });
+    setForm({ title: "", user: "", ingredients: "", sector: "" });
     navigate("/");
   }
 
