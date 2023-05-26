@@ -37,7 +37,7 @@ export default function Create() {
     });
 
     setForm({ title: "", user: "", ingredients: "", sector: "" });
-    navigate("/");
+    navigate("/vos_plats");
   }
 
   // This following section will display the form that takes the input from the user.

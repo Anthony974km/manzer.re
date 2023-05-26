@@ -16,7 +16,14 @@ const VosPlats = () => {
 
   useEffect(fetchMeals);
 
-  const handleDelete = () => {};
+  const handleDelete = (meal) => {
+    axios.delete(`http://localhost:5050/record/${meal._id}`)
+      .then(() => {
+        
+        setMeals(meals.filter(m => m._id !== meal._id));
+      })
+      .catch((err) => console.log(err));
+  };
 
   return (
     <div className="app">
