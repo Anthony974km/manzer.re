@@ -5,8 +5,8 @@ import "bootstrap/dist/css/bootstrap.css";
 export default function Create() {
   const [form, setForm] = useState({
     title: "",
-    user: "",
-    ingredients: Array[""],
+    user: "", //Le login de la personne connecter
+    ingredients: "",
     sector: "",
   });
   const navigate = useNavigate();

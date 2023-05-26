@@ -10,9 +10,7 @@ const Card = ({ meal }) => {
       {/* <img src={meal.src} alt="" className="img-fluid rounded-circle" /> */}
       <p className="card-text">
         <ul>
-          {meal.ingredients.map((ingredient, index) => (
-            <li key={index}>{ingredient}</li>
-          ))}
+          <li>{meal.ingredients}</li>
         </ul>
         Secteur : {meal.sector}
       </p>
