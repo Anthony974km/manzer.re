@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from 'react-router-dom';
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.min.js";
 
@@ -10,12 +11,14 @@ const Card = ({ meal, onDelete }) => {
       <img src={meal.src} alt="" className="img-fluid rounded-circle" />
       <p className="card-text">
         <ul>
+          
           <li>{meal.ingredients}</li>
+          
         </ul>
         Secteur : {meal.sector}
       </p>
-      <a href="/vos_plats/edit">Modif</a>
       <button onClick={() => onDelete(meal)}>Supprimer</button>
+      <Link to={`edit/${meal._id}`}>Modifier</Link> 
     </div>
   );
 };

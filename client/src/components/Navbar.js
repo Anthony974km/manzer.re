@@ -49,6 +49,7 @@ const Navbar = () => {
             <input
               className="form-control me-2"
               type="text"
+              id="searchInput"
               placeholder="Rechercher..."
               onChange={(e) => setSearchInput(e.target.value)}
             />

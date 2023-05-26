@@ -1,57 +1,119 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import { useParams } from "react-router";
 
-const Edit = ({ _id }) => {
+const Edit = () => {
+  const [meal, setMeal] = useState({});
   const [title, setTitle] = useState("");
   const [ingredients, setIngredients] = useState("");
   const [sector, setSector] = useState("");
+  const params = useParams();
+  console.log(params);
+  
 
   useEffect(() => {
-    const fetchMeal = async () => {
-      const res = await axios.get(`http://localhost:5050/record/${_id}`);
-      setTitle(res.data.title);
-      setIngredients(res.data.ingredients);
-      setSector(res.data.sector);
-    };
-    fetchMeal();
-  }, [_id]);
+    axios.get(`http://localhost:5050/record/${params.id}`).then((response) => {
+      setMeal(response.data);
+      setTitle(response.data.title);
+      setIngredients(response.data.ingredients);
+      setSector(response.data.sector);
+    });
+  }, [meal._id]);
 
-  const updateMeal = async () => {
-    const updatedMeal = { title, ingredients, sector };
-    await axios.put(`http://localhost:5050/record/${_id}`, updatedMeal);
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    axios
+      .patch(`http://localhost:5050/record/${params.id}`, {
+        title,
+        ingredients,
+        sector,
+      })
+      .then(() => {
+        window.location.href = "/vos_plats";
+      });
   };
 
   return (
-    <div>
-      <h2>Modifier le repas</h2>
-      <form onSubmit={updateMeal}>
-        <label>
-          Titre :
-          <input 
-            type="text"
-            value={title}
-            onChange={e => setTitle(e.target.value)}
-          />
+    <form onSubmit={handleSubmit}>
+      <label>
+        Title:
+        <input
+          type="text"
+          value={title}
+          onChange={(e) => setTitle(e.target.value)}
+        />
+      </label>
+      <label>
+        Ingredients:
+        <input
+          type="text"
+          value={ingredients}
+          onChange={(e) => setIngredients(e.target.value)}
+        />
+      </label>
+      <div className="form-check form-check-inline">
+        <input
+          className="form-check-input"
+          type="radio"
+          name="positionOptions"
+          id="positionIntern"
+          value="Nord"
+          //  checked={params.sector === "Nord"}
+          onChange={(e) => setSector(e.target.value)}
+        />
+        <label htmlFor="positionIntern" className="form-check-label">
+          Nord
         </label>
-        <label>
-          Ingrédients :
-          <input 
-            type="text"
-            value={ingredients}
-            onChange={e => setTitle(e.target.value)}
-          />
+      </div>
+
+      <div className="form-check form-check-inline">
+        <input
+          className="form-check-input"
+          type="radio"
+          name="positionOptions"
+          id="positionIntern"
+          value="Est"
+          //  checked={params.sector === "Est"}
+          onChange={(e) => setSector(e.target.value)}
+        />
+        <label htmlFor="positionIntern" className="form-check-label">
+          Est
         </label>
-        <label>
-          Secteur :
-          <input 
-            type="text"
-            value={sector}
-            onChange={e => setSector(e.target.value)}
-          />
+      </div>
+
+      <div className="form-check form-check-inline">
+        <input
+          className="form-check-input"
+          type="radio"
+          name="positionOptions"
+          id="positionIntern"
+          value="Sud"
+          //  checked={params.sector === "Sud"}
+          onChange={(e) => setSector(e.target.value)}
+        />
+        <label htmlFor="positionIntern" className="form-check-label">
+          Sud
         </label>
-        <button type="submit">Mettre à jour</button>
-      </form>
-    </div>
+      </div>
+
+      <div className="form-check form-check-inline">
+        <input
+          className="form-check-input"
+          type="radio"
+          name="positionOptions"
+          id="positionIntern"
+          value="Ouest"
+          //  checked={params.sector === "Ouest"}
+          onChange={(e) => setSector(e.target.value)}
+        />
+        <label htmlFor="positionIntern" className="form-check-label">
+          Ouest
+        </label>
+      </div>
+
+      <button type="submit">Mettre à jour</button>
+    </form>
   );
 };
 
