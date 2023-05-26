@@ -16,6 +16,8 @@ const VosPlats = () => {
 
   useEffect(fetchMeals);
 
+  const handleDelete = () => {};
+
   return (
     <div className="app">
       <nav>
@@ -30,7 +32,7 @@ const VosPlats = () => {
         <p>Ne manquez pas les menus du jour les plus alléchants.</p>
         <div className="card-container">
           {meals.map((meal, index) => (
-            <Card key={index} meal={meal} />
+            <Card key={index} meal={meal} onDelete={handleDelete} />
           ))}
         </div>
         <a href="/vos_plats/create">Ajouter</a>

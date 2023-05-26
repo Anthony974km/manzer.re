@@ -13,8 +13,8 @@ export default function Edit() {
  
  useEffect(() => {
    async function fetchData() {
-     const id = params.id.toString();
-     const response = await fetch(`http://localhost:5050/record/${params.id.toString()}`);
+     const id = params.id;
+     const response = await fetch(`http://localhost:5050/record/${id}`);
  
      if (!response.ok) {
        const message = `An error has occurred: ${response.statusText}`;
@@ -67,10 +67,10 @@ export default function Edit() {
  // This following section will display the form that takes input from the user to update the data.
  return (
    <div>
-     <h3>Update Record</h3>
+     <h3>Modifier le repas</h3>
      <form onSubmit={onSubmit}>
        <div className="form-group">
-         <label htmlFor="title">title: </label>
+         <label htmlFor="title">Nom du repas: </label>
          <input
            type="text"
            className="form-control"
@@ -95,36 +95,48 @@ export default function Edit() {
              className="form-check-input"
              type="radio"
              title="positionOptions"
-             id="positionIntern"
-             value="Intern"
-             checked={form.sector === "Intern"}
+             id="positionNord"
+             value="Nord"
+             checked={form.sector === "Nord"}
              onChange={(e) => updateForm({ sector: e.target.value })}
            />
-           <label htmlFor="positionIntern" className="form-check-label">Intern</label>
+           <label htmlFor="positionNord" className="form-check-label">Nord</label>
          </div>
          <div className="form-check form-check-inline">
            <input
              className="form-check-input"
              type="radio"
              title="positionOptions"
-             id="positionJunior"
-             value="Junior"
-             checked={form.sector === "Junior"}
+             id="positionEst"
+             value="Est"
+             checked={form.sector === "Est"}
              onChange={(e) => updateForm({ sector: e.target.value })}
            />
-           <label htmlFor="positionJunior" className="form-check-label">Junior</label>
+           <label htmlFor="positionEst" className="form-check-label">Est</label>
          </div>
          <div className="form-check form-check-inline">
            <input
              className="form-check-input"
              type="radio"
              title="positionOptions"
-             id="positionSenior"
-             value="Senior"
-             checked={form.sector === "Senior"}
+             id="positionSud"
+             value="Sud"
+             checked={form.sector === "Sud"}
              onChange={(e) => updateForm({ sector: e.target.value })}
            />
-           <label htmlFor="positionSenior" className="form-check-label">Senior</label>
+           <label htmlFor="positionSud" className="form-check-label">Sud</label>
+         </div>
+         <div className="form-check form-check-inline">
+           <input
+             className="form-check-input"
+             type="radio"
+             title="positionOptions"
+             id="positionOuest"
+             value="Ouest"
+             checked={form.sector === "Ouest"}
+             onChange={(e) => updateForm({ sector: e.target.value })}
+           />
+           <label htmlFor="positionOuest" className="form-check-label">Ouest</label>
        </div>
        </div>
        <br />

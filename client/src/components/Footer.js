@@ -25,6 +25,11 @@ const Footer = () => {
           Ouest
         </a>
       </li>
+      <li className="nav-item">
+        <a className="nav-link" href="#">
+          Tout
+        </a>
+      </li>
     </ul>
   );
 };
