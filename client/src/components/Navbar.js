@@ -2,8 +2,12 @@ import React, { useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.min.js";
 
-const Navbar = () => {
+const Navbar = ({ onSearch }) => {
   let [searchInput, setSearchInput] = useState("");
+  const handleSearchChange = (e) => {
+    setSearchInput(e.target.value);
+    onSearch(e.target.value);
+  };
   return (
     <nav className="navbar navbar-expand-lg bg-primary" data-bs-theme="blue">
       <div className="container-fluid">
@@ -46,13 +50,13 @@ const Navbar = () => {
             </li>
           </ul>
           <form className="d-flex" role="search">
-            <input
-              className="form-control me-2"
-              type="text"
-              id="searchInput"
-              placeholder="Rechercher..."
-              onChange={(e) => setSearchInput(e.target.value)}
-            />
+          <input
+      className="form-control me-2"
+      type="text"
+      id="searchInput"
+      placeholder="Rechercher..."
+      onChange={handleSearchChange}
+    />
             <button type="button" className="btn btn-success">
               Connexion
             </button>

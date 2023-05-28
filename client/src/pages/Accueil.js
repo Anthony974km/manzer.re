@@ -9,22 +9,33 @@ import "bootstrap/dist/js/bootstrap.min.js";
 const Accueil = () => {
   let [meals, setMeals] = useState([]);
   let [filter, setFilter] = useState("All");
+  const [search, setSearch] = useState("");
 
   const fetchMeals = () => {
     axios
       .get("http://localhost:5050/record/")
-      .then((response) => setMeals(response.data)
-      );
+      .then((response) => setMeals(response.data));
   };
 
   useEffect(fetchMeals, []);
 
-  const filteredMeals = filter === "All" ? meals : meals.filter(meal => meal.sector === filter);
+  let filteredMeals = filter === "All" ? meals : meals.filter(meal => meal.sector === filter);
+
+  // Then filter by search input
+  filteredMeals = filteredMeals.filter(meal =>
+    meal.title.toLowerCase().includes(search.toLowerCase()) ||
+    meal.ingredients.toLowerCase().includes(search.toLowerCase()) ||
+    meal.user.toLowerCase().includes(search.toLowerCase())
+  );
+
+  const handleSearchChange = (newSearch) => {
+    setSearch(newSearch);
+  };
 
   return (
     <div className="app">
       <nav>
-        <Navbar />
+        <Navbar onSearch={handleSearchChange} />
       </nav>
       <div className="container">
         <h1>Menu du jour</h1>
@@ -40,9 +51,9 @@ const Accueil = () => {
         </div>
       </div>
       <div>
-      <footer>
-        <Footer onFilterChange={setFilter} />
-      </footer>
+        <footer>
+          <Footer onFilterChange={setFilter} />
+        </footer>
       </div>
     </div>
   );
