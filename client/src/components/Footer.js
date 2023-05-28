@@ -1,36 +1,16 @@
 import React from "react";
-import "bootstrap/dist/css/bootstrap.min.css";
-import "bootstrap/dist/js/bootstrap.min.js";
 
-const Footer = () => {
+const Footer = ({ onFilterChange }) => {
   return (
-    <ul className="nav justify-content-center footer-container">
-      <li className="nav-item">
-        <a className="nav-link active" aria-current="page" href="#">
-          Nord
-        </a>
-      </li>
-      <li className="nav-item">
-        <a className="nav-link" href="#">
-          Est
-        </a>
-      </li>
-      <li className="nav-item">
-        <a className="nav-link" href="#">
-          Sud
-        </a>
-      </li>
-      <li className="nav-item">
-        <a className="nav-link" href="#">
-          Ouest
-        </a>
-      </li>
-      <li className="nav-item">
-        <a className="nav-link" href="#">
-          Tout
-        </a>
-      </li>
-    </ul>
+    <div className="footer">
+      <select onChange={(e) => onFilterChange(e.target.value)}>
+        <option value="All">Tous les secteurs</option>
+        <option value="Nord">Nord</option>
+        <option value="Est">Est</option>
+        <option value="Sud">Sud</option>
+        <option value="Ouest">Ouest</option>
+      </select>
+    </div>
   );
 };
 

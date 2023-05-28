@@ -8,6 +8,7 @@ import "bootstrap/dist/js/bootstrap.min.js";
 
 const Accueil = () => {
   let [meals, setMeals] = useState([]);
+  let [filter, setFilter] = useState("All");
 
   const fetchMeals = () => {
     axios
@@ -16,7 +17,9 @@ const Accueil = () => {
       );
   };
 
-  useEffect(fetchMeals);
+  useEffect(fetchMeals, []);
+
+  const filteredMeals = filter === "All" ? meals : meals.filter(meal => meal.sector === filter);
 
   return (
     <div className="app">
@@ -31,14 +34,14 @@ const Accueil = () => {
         </p>
         <p>Ne manquez pas les menus du jour les plus alléchants.</p>
         <div className="card-container">
-          {meals.map((meal, index) => (
+          {filteredMeals.map((meal, index) => (
             <Card key={index} meal={meal} />
           ))}
         </div>
       </div>
       <div>
       <footer>
-        <Footer />
+        <Footer onFilterChange={setFilter} />
       </footer>
       </div>
     </div>
