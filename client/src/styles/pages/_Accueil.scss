@@ -44,3 +44,10 @@ nav {
   flex-basis: calc(100% / 3 - 20px);
   margin: 10px;
 }
+
+.filter-container {
+  position: fixed;
+  top: 20%;
+  right: 20px;
+  z-index: 999;
+}

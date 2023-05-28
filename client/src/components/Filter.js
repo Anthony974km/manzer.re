@@ -1,6 +1,6 @@
 import React from "react";
 
-const Footer = ({ onFilterChange }) => {
+const Filter = ({ onFilterChange }) => {
   return (
     <div className="footer">
       <select onChange={(e) => onFilterChange(e.target.value)}>
@@ -14,4 +14,4 @@ const Footer = ({ onFilterChange }) => {
   );
 };
 
-export default Footer;
+export default Filter;

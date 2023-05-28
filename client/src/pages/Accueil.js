@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Navbar from "../components/Navbar";
 import Card from "../components/Card-accueil";
-import Footer from "../components/Footer";
+import Filter from "../components/Filter";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.min.js";
 
@@ -19,13 +19,15 @@ const Accueil = () => {
 
   useEffect(fetchMeals, []);
 
-  let filteredMeals = filter === "All" ? meals : meals.filter(meal => meal.sector === filter);
+  let filteredMeals =
+    filter === "All" ? meals : meals.filter((meal) => meal.sector === filter);
 
   // Then filter by search input
-  filteredMeals = filteredMeals.filter(meal =>
-    meal.title.toLowerCase().includes(search.toLowerCase()) ||
-    meal.ingredients.toLowerCase().includes(search.toLowerCase()) ||
-    meal.user.toLowerCase().includes(search.toLowerCase())
+  filteredMeals = filteredMeals.filter(
+    (meal) =>
+      meal.title.toLowerCase().includes(search.toLowerCase()) ||
+      meal.ingredients.toLowerCase().includes(search.toLowerCase()) ||
+      meal.user.toLowerCase().includes(search.toLowerCase())
   );
 
   const handleSearchChange = (newSearch) => {
@@ -44,16 +46,14 @@ const Accueil = () => {
           Réunion, sur Manzer.re.
         </p>
         <p>Ne manquez pas les menus du jour les plus alléchants.</p>
+        <div className="filter-container">
+          <Filter onFilterChange={setFilter} />
+        </div>
         <div className="card-container">
           {filteredMeals.map((meal, index) => (
             <Card key={index} meal={meal} />
           ))}
         </div>
-      </div>
-      <div>
-        <footer>
-          <Footer onFilterChange={setFilter} />
-        </footer>
       </div>
     </div>
   );

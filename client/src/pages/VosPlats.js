@@ -7,15 +7,16 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.min.js";
 
 const VosPlats = () => {
-  let [meals, setMeals] = useState([]);
+  const [meals, setMeals] = useState([]);
+  const [searchInput, setSearchInput] = useState("");
 
   const fetchMeals = () => {
     axios
-      .get("http://localhost:5050/record/")
+      .get(`http://localhost:5050/record/?search=${searchInput}`)
       .then((response) => setMeals(response.data));
   };
 
-  useEffect(fetchMeals);
+  useEffect(fetchMeals, [searchInput]);
 
   const handleDelete = (meal) => {
     axios
@@ -29,7 +30,7 @@ const VosPlats = () => {
   return (
     <div className="app">
       <nav>
-        <Navbar />
+        <Navbar onSearch={setSearchInput} />
       </nav>
       <div className="container">
         <h1>Vos Plats</h1>
