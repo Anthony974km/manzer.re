@@ -4,7 +4,7 @@ import "bootstrap/dist/js/bootstrap.min.js";
 
 const Footer = () => {
   return (
-    <ul className="nav justify-content-center">
+    <ul className="nav justify-content-center footer-container">
       <li className="nav-item">
         <a className="nav-link active" aria-current="page" href="#">
           Nord

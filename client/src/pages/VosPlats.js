@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Navbar from "../components/Navbar";
+import { FaPlus } from "react-icons/fa";
 import Card from "../components/Card-vosPlats";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.min.js";
@@ -17,10 +18,10 @@ const VosPlats = () => {
   useEffect(fetchMeals);
 
   const handleDelete = (meal) => {
-    axios.delete(`http://localhost:5050/record/${meal._id}`)
+    axios
+      .delete(`http://localhost:5050/record/${meal._id}`)
       .then(() => {
-        
-        setMeals(meals.filter(m => m._id !== meal._id));
+        setMeals(meals.filter((m) => m._id !== meal._id));
       })
       .catch((err) => console.log(err));
   };
@@ -33,8 +34,7 @@ const VosPlats = () => {
       <div className="container">
         <h1>Vos Plats</h1>
         <p>
-          Laissez-vous tenter par les menus du jour les plus délicieux de La
-          Réunion, sur Manzer.re.
+          Laissez-vous tenter par les menus du jour les plus délicieux de La Réunion, sur Manzer.re.
         </p>
         <p>Ne manquez pas les menus du jour les plus alléchants.</p>
         <div className="card-container">
@@ -42,7 +42,13 @@ const VosPlats = () => {
             <Card key={index} meal={meal} onDelete={handleDelete} />
           ))}
         </div>
-        <a href="/vos_plats/create">Ajouter</a>
+        <a
+          href="/vos_plats/create"
+          className="btn btn-primary rounded-circle add-button"
+          style={{ position: "fixed", bottom: "30px", right: "30px" }}
+        >
+          <FaPlus style={{ width: "20px", height: "30px" }} />
+        </a>
       </div>
     </div>
   );

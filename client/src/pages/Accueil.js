@@ -36,9 +36,11 @@ const Accueil = () => {
           ))}
         </div>
       </div>
+      <div>
       <footer>
         <Footer />
       </footer>
+      </div>
     </div>
   );
 };

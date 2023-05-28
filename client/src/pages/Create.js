@@ -42,95 +42,108 @@ export default function Create() {
 
   // This following section will display the form that takes the input from the user.
   return (
-    <div>
-      <h3>Ajouter un repas</h3>
-      <form onSubmit={onSubmit}>
-        <div className="form-group">
-          <label htmlFor="title">Nom du plat</label>
-          <input
-            type="text"
-            className="form-control"
-            id="title"
-            value={form.title}
-            onChange={(e) => updateForm({ title: e.target.value })}
-          />
-        </div>
-        <div className="form-group">
-          <label htmlFor="ingredients">Ingrédients accrocheur</label>
-          <input
-            type="text"
-            className="form-control"
-            id="ingredients"
-            value={form.ingredients}
-            onChange={(e) => updateForm({ ingredients: e.target.value })}
-          />
-        </div>
-        <div className="form-group">
-          <div className="form-check form-check-inline">
+    <div
+      style={{
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        height: "80vh",
+      }}
+    >
+      <div>
+        <h3>Ajouter un repas</h3>
+        <form onSubmit={onSubmit}>
+          <div className="form-group">
+            <label htmlFor="title">Nom du plat</label>
             <input
-              className="form-check-input"
-              type="radio"
-              name="sectorOptions"
-              id="sectorNord"
-              value="Nord"
-              checked={form.sector === "Nord"}
-              onChange={(e) => updateForm({ sector: e.target.value })}
+              type="text"
+              className="form-control"
+              id="title"
+              value={form.title}
+              onChange={(e) => updateForm({ title: e.target.value })}
             />
-            <label htmlFor="sectorNord" className="form-check-label">
-              Nord
-            </label>
           </div>
-          <div className="form-check form-check-inline">
+          <div className="form-group">
+            <label htmlFor="ingredients">Ingrédient</label>
             <input
-              className="form-check-input"
-              type="radio"
-              name="sectorOptions"
-              id="sectorEst"
-              value="Est"
-              checked={form.sector === "Est"}
-              onChange={(e) => updateForm({ sector: e.target.value })}
+              type="text"
+              className="form-control"
+              id="ingredients"
+              value={form.ingredients}
+              onChange={(e) => updateForm({ ingredients: e.target.value })}
             />
-            <label htmlFor="sectorEst" className="form-check-label">
-              Est
-            </label>
           </div>
-          <div className="form-check form-check-inline">
-            <input
-              className="form-check-input"
-              type="radio"
-              name="sectorOptions"
-              id="sectorSud"
-              value="Sud"
-              checked={form.sector === "Sud"}
-              onChange={(e) => updateForm({ sector: e.target.value })}
-            />
-            <label htmlFor="sectorSud" className="form-check-label">
-              Sud
-            </label>
+          <div className="form-group">
+            <div className="form-check form-check-inline">
+              <input
+                className="form-check-input"
+                type="radio"
+                name="sectorOptions"
+                id="sectorNord"
+                value="Nord"
+                checked={form.sector === "Nord"}
+                onChange={(e) => updateForm({ sector: e.target.value })}
+              />
+              <label htmlFor="sectorNord" className="form-check-label">
+                Nord
+              </label>
+            </div>
+            <div className="form-check form-check-inline">
+              <input
+                className="form-check-input"
+                type="radio"
+                name="sectorOptions"
+                id="sectorEst"
+                value="Est"
+                checked={form.sector === "Est"}
+                onChange={(e) => updateForm({ sector: e.target.value })}
+              />
+              <label htmlFor="sectorEst" className="form-check-label">
+                Est
+              </label>
+            </div>
+            <div className="form-check form-check-inline">
+              <input
+                className="form-check-input"
+                type="radio"
+                name="sectorOptions"
+                id="sectorSud"
+                value="Sud"
+                checked={form.sector === "Sud"}
+                onChange={(e) => updateForm({ sector: e.target.value })}
+              />
+              <label htmlFor="sectorSud" className="form-check-label">
+                Sud
+              </label>
+            </div>
+            <div className="form-check form-check-inline">
+              <input
+                className="form-check-input"
+                type="radio"
+                name="sectorOptions"
+                id="sectorOuest"
+                value="Ouest"
+                checked={form.sector === "Ouest"}
+                onChange={(e) => updateForm({ sector: e.target.value })}
+              />
+              <label htmlFor="sectorOuest" className="form-check-label">
+                Ouest
+              </label>
+            </div>
           </div>
-          <div className="form-check form-check-inline">
-            <input
-              className="form-check-input"
-              type="radio"
-              name="sectorOptions"
-              id="sectorOuest"
-              value="Ouest"
-              checked={form.sector === "Ouest"}
-              onChange={(e) => updateForm({ sector: e.target.value })}
-            />
-            <label htmlFor="sectorOuest" className="form-check-label">
-              Ouest
-            </label>
+          <div className="form-group">
+            <input type="submit" value="Ajouter" className="btn btn-primary" />
+            <button
+              type="button"
+              className="btn btn-secondary"
+              onClick={() => navigate("/vos_plats")}
+              style={{ marginLeft: "10px" }}
+            >
+              Retour
+            </button>
           </div>
-        </div>
-        <div className="form-group">
-          <input
-            type="submit"
-            value="Ajouter"
-            className="btn btn-primary"
-          />
-        </div>
-      </form>
+        </form>
+      </div>
     </div>
   );
 }
