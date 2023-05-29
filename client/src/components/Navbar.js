@@ -1,13 +1,20 @@
 import React, { useState } from "react";
+import { GoogleLogin } from 'react-google-login';
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.min.js";
 
 const Navbar = ({ onSearch }) => {
   let [searchInput, setSearchInput] = useState("");
+  
   const handleSearchChange = (e) => {
     setSearchInput(e.target.value);
     onSearch(e.target.value);
   };
+
+  const responseGoogle = (response) => {
+    console.log(response);
+  }
+
   return (
     <nav className="navbar navbar-expand-lg bg-primary" data-bs-theme="blue">
       <div className="container-fluid">
@@ -50,16 +57,21 @@ const Navbar = ({ onSearch }) => {
             </li>
           </ul>
           <form className="d-flex" role="search">
-          <input
-      className="form-control me-2"
-      type="text"
-      id="searchInput"
-      placeholder="Rechercher..."
-      onChange={handleSearchChange}
-    />
-            <button type="button" className="btn btn-success">
-              Connexion
-            </button>
+            <input
+              className="form-control me-2"
+              type="text"
+              id="searchInput"
+              placeholder="Rechercher..."
+              onChange={handleSearchChange}
+            />
+            <GoogleLogin
+              clientId="85925874553-9kk3oadov97l29fne011vnbb2lcmfs96.apps.googleusercontent.com"
+              buttonText="Connexion avec Google"
+              onSuccess={responseGoogle}
+              onFailure={responseGoogle}
+              cookiePolicy={'single_host_origin'}
+              className="btn btn-success"
+            />
           </form>
         </div>
       </div>
