@@ -4,6 +4,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.min.js";
 
 const Card = ({ meal, onDelete }) => {
+  const ingredients = meal.ingredients.split(",");
   return (
     <div className="card">
       <div className="card-body">
@@ -12,7 +13,9 @@ const Card = ({ meal, onDelete }) => {
         <img src={meal.src} alt="" className="img-fluid rounded-circle" />
         <p className="card-text">
           <ul>
-            <li>{meal.ingredients}</li>
+            {ingredients.map((ingredient, index) => (
+              <li key={index}>{ingredient}</li>
+            ))}
           </ul>
           Secteur: {meal.sector}
         </p>
@@ -30,4 +33,3 @@ const Card = ({ meal, onDelete }) => {
 };
 
 export default Card;
-

@@ -64,14 +64,14 @@ const Navbar = ({ onSearch }) => {
               placeholder="Rechercher..."
               onChange={handleSearchChange}
             />
-            <GoogleLogin
+            {/* <GoogleLogin
               clientId="85925874553-9kk3oadov97l29fne011vnbb2lcmfs96.apps.googleusercontent.com"
               buttonText="Connexion avec Google"
               onSuccess={responseGoogle}
               onFailure={responseGoogle}
               cookiePolicy={'single_host_origin'}
               className="btn btn-success"
-            />
+            /> */}
           </form>
         </div>
       </div>

@@ -3,17 +3,23 @@ import axios from "axios";
 import Navbar from "../components/Navbar";
 import { FaPlus } from "react-icons/fa";
 import Card from "../components/Card-vosPlats";
+import Loader, { Circles } from "react-loader-spinner";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.min.js";
 
 const VosPlats = () => {
   const [meals, setMeals] = useState([]);
   const [searchInput, setSearchInput] = useState("");
+  const [isLoading, setIsLoading] = useState(true);
 
   const fetchMeals = () => {
+    setIsLoading(true);
     axios
       .get(`http://localhost:5050/record/?search=${searchInput}`)
-      .then((response) => setMeals(response.data));
+      .then((response) => {
+        setMeals(response.data);
+        setIsLoading(false);
+      });
   };
 
   useEffect(fetchMeals, [searchInput]);
@@ -39,9 +45,21 @@ const VosPlats = () => {
         </p>
         <p>Ne manquez pas les menus du jour les plus alléchants.</p>
         <div className="card-container">
-          {meals.map((meal, index) => (
-            <Card key={index} meal={meal} onDelete={handleDelete} />
-          ))}
+          {isLoading ? (
+            <div className="loader-container">
+              <Circles
+                type="Puff"
+                color="#00BFFF"
+                height={100}
+                width={100}
+                timeout={3000}
+              />
+            </div>
+          ) : (
+            meals.map((meal, index) => (
+              <Card key={index} meal={meal} onDelete={handleDelete} />
+            ))
+          )}
         </div>
         <a
           href="/vos_plats/create"

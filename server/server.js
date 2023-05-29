@@ -14,36 +14,26 @@ app.use(express.json());
 
 app.use("/record", records);
 
-// Connect to MongoDB
-const uri = process.env.ATLAS_URI;
-mongoose.connect(uri, { useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology: true });
-const connection = mongoose.connection;
-connection.once('open', () => {
-  console.log("MongoDB database connection established successfully");
-})
 
-// Login route
-app.post('/login', async (req, res) => {
-  const { tokenId } = req.body;
+// app.post('/login', async (req, res) => {
+//   const { tokenId } = req.body;
 
-  // verify token ID
-  const ticket = await jwt.verify(tokenId, process.env.JWT_SECRET);
 
-  const { sub: googleId, email, name, picture: imageUrl } = ticket;
+//   const ticket = await jwt.verify(tokenId, process.env.JWT_SECRET);
 
-  // look for existing user
-  let user = await User.findOne({ googleId });
+//   const { sub: googleId, email, name, picture: imageUrl } = ticket;
 
-  if (!user) {
-    // create new user
-    user = new User({ googleId, email, name, imageUrl });
-    await user.save();
-  }
 
-  // create user session...
+//   let user = await User.findOne({ googleId });
 
-  res.send(user);
-});
+//   if (!user) {
+
+//     user = new User({ googleId, email, name, imageUrl });
+//     await user.save();
+//   }
+
+//   res.send(user);
+// });
 
 // start the Express server
 app.listen(PORT, () => {

@@ -3,6 +3,7 @@ import axios from "axios";
 import Navbar from "../components/Navbar";
 import Card from "../components/Card-accueil";
 import Filter from "../components/Filter";
+import Loader, { Circles } from "react-loader-spinner";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.min.js";
 
@@ -10,11 +11,14 @@ const Accueil = () => {
   let [meals, setMeals] = useState([]);
   let [filter, setFilter] = useState("All");
   const [search, setSearch] = useState("");
+  const [isLoading, setIsLoading] = useState(true);
 
   const fetchMeals = () => {
-    axios
-      .get("http://localhost:5050/record/")
-      .then((response) => setMeals(response.data));
+    setIsLoading(true);
+    axios.get("http://localhost:5050/record/").then((response) => {
+      setMeals(response.data);
+      setIsLoading(false);
+    });
   };
 
   useEffect(fetchMeals, []);
@@ -22,7 +26,6 @@ const Accueil = () => {
   let filteredMeals =
     filter === "All" ? meals : meals.filter((meal) => meal.sector === filter);
 
-  // Then filter by search input
   filteredMeals = filteredMeals.filter(
     (meal) =>
       meal.title.toLowerCase().includes(search.toLowerCase()) ||
@@ -50,9 +53,17 @@ const Accueil = () => {
           <Filter onFilterChange={setFilter} />
         </div>
         <div className="card-container">
-          {filteredMeals.map((meal, index) => (
-            <Card key={index} meal={meal} />
-          ))}
+          {isLoading ? (
+            <Circles
+              type="Puff"
+              color="#00BFFF"
+              height={100}
+              width={100}
+              timeout={3000}
+            />
+          ) : (
+            filteredMeals.map((meal, index) => <Card key={index} meal={meal} />)
+          )}
         </div>
       </div>
     </div>
