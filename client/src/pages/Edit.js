@@ -57,7 +57,7 @@ const Edit = () => {
             />
           </div>
           <div className="form-group">
-            <label htmlFor="ingredients">Ingrédient</label>
+            <label htmlFor="ingredients">Description</label>
             <input
               type="text"
               className="form-control"

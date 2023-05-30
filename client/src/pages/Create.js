@@ -41,6 +41,8 @@ export default function Create() {
   }
 
   // This following section will display the form that takes the input from the user.
+  const isFormInvalid = !form.title || !form.sector;
+
   return (
     <div
       style={{
@@ -62,9 +64,10 @@ export default function Create() {
               value={form.title}
               onChange={(e) => updateForm({ title: e.target.value })}
             />
+            {!form.title && <small className="text-danger">Veuillez entrer le nom du plat</small>}
           </div>
           <div className="form-group">
-            <label htmlFor="ingredients">Ingrédient</label>
+            <label htmlFor="ingredients">Description</label>
             <input
               type="text"
               className="form-control"
@@ -131,8 +134,9 @@ export default function Create() {
               </label>
             </div>
           </div>
+          {!form.sector && <small className="text-danger">Veuillez choisir le secteur</small>}
           <div className="form-group">
-            <input type="submit" value="Ajouter" className="btn btn-primary" />
+            <input type="submit" value="Ajouter" className="btn btn-primary" disabled={isFormInvalid} />
             <button
               type="button"
               className="btn btn-secondary"
