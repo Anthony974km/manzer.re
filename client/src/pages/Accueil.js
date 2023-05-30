@@ -15,7 +15,7 @@ const Accueil = () => {
 
   const fetchMeals = () => {
     setIsLoading(true);
-    axios.get("http://localhost:5050/record/").then((response) => {
+    axios.get("http://localhost:5050/record/").then((response) => { //A changer lors du déploiement server
       setMeals(response.data);
       setIsLoading(false);
     });

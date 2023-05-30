@@ -13,7 +13,7 @@ const Edit = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    axios.get(`http://localhost:5050/record/${params.id}`).then((response) => {
+    axios.get(`http://localhost:5050/record/${params.id}`).then((response) => { //A changer lors du déploiement server
       setMeal(response.data);
       setTitle(response.data.title);
       setIngredients(response.data.ingredients);
@@ -25,7 +25,7 @@ const Edit = () => {
     e.preventDefault();
 
     axios
-      .patch(`http://localhost:5050/record/${params.id}`, {
+      .patch(`http://localhost:5050/record/${params.id}`, { //A changer lors du déploiement server
         title,
         ingredients,
         sector,

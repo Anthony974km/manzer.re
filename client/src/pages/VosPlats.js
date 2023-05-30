@@ -4,6 +4,7 @@ import Navbar from "../components/Navbar";
 import { FaPlus } from "react-icons/fa";
 import Card from "../components/Card-vosPlats";
 import Loader, { Circles } from "react-loader-spinner";
+import { Link } from 'react-router-dom';
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.min.js";
 
@@ -15,7 +16,7 @@ const VosPlats = () => {
   const fetchMeals = () => {
     setIsLoading(true);
     axios
-      .get(`http://localhost:5050/record/?search=${searchInput}`)
+      .get(`http://localhost:5050/record/?search=${searchInput}`) //A changer lors du déploiement server
       .then((response) => {
         setMeals(response.data);
         setIsLoading(false);
@@ -26,7 +27,7 @@ const VosPlats = () => {
 
   const handleDelete = (meal) => {
     axios
-      .delete(`http://localhost:5050/record/${meal._id}`)
+      .delete(`http://localhost:5050/record/${meal._id}`) //A changer lors du déploiement server
       .then(() => {
         setMeals(meals.filter((m) => m._id !== meal._id));
       })
@@ -61,13 +62,13 @@ const VosPlats = () => {
             ))
           )}
         </div>
-        <a
-          href="/vos_plats/create"
+        <Link
+          to="/vos_plats/create"
           className="btn btn-primary rounded-circle add-button"
           style={{ position: "fixed", bottom: "30px", right: "30px" }}
         >
           <FaPlus style={{ width: "20px", height: "30px" }} />
-        </a>
+        </Link>
       </div>
     </div>
   );
